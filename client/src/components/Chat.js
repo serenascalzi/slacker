@@ -7,7 +7,7 @@ class Chat extends Component {
 
 	state = {
 		text1:'',
-		time:''
+		time:timestamp()
 	}
 
 	handleChange = (e) => {
@@ -18,7 +18,7 @@ class Chat extends Component {
 
 	handleForm1 = (e) => {
 		e.preventDefault()
-		sendForm1(this.state.text1)
+		sendForm1(this.state.text1, this.state.time)
 		this.setState({
 			text1:'',
 			time:timestamp()
@@ -31,13 +31,13 @@ class Chat extends Component {
 				<div>
 					<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
 					<form onSubmit={this.handleForm1}>
-						<input name="text1" onChange={this.handleChange} type="text" placeholder="Start chatting..." value={this.state.text1} />
+						<input name="text1" onChange={this.handleChange} type="text" placeholder="Start chatting..." value={this.state.text1} autoComplete="off" />
 						<button type="submit">Submit</button>
 					</form>
 					<div className="room" id="room 1">
 						{this.props.messages1.map((message, i) => (
 							<div key={"message1" + i}>
-								{message.username}: {this.state.time}: {message.message}
+								{message.username} :: {message.timestamp} :: {message.message}
 							</div>
 						))}
 					</div>

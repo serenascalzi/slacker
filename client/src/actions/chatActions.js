@@ -12,9 +12,10 @@ socket.on('message room 1', function (data) {
   })
 })
 
-export function sendForm1 (message) {
+export function sendForm1 (message, timestamp) {
   socket.emit('message room 1', {
-    message: message
+    message: message,
+    timestamp: timestamp
   })
 }
 

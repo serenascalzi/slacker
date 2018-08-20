@@ -31,10 +31,10 @@ class Login extends Component {
 						<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
 						<form onSubmit={this.handleSubmit}>
 							<div>
-								<input type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Enter Username" />
+								<input type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Enter Username" autoComplete="off" />
 							</div>
 							<div>
-								<input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter Password" />
+								<input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter Password" autoComplete="off" />
 							</div>
 							<div>
 								<button type="submit">Login</button>
