@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import '../styles/App.css'
-import {sendForm1} from '../actions/chatActions'
+import {sendForm1, timestamp} from '../actions/chatActions'
 import {connect} from 'react-redux'
 
 class Chat extends Component {
 
 	state = {
-		text1:''
+		text1:'',
+		time:''
 	}
 
 	handleChange = (e) => {
@@ -19,7 +20,8 @@ class Chat extends Component {
 		e.preventDefault()
 		sendForm1(this.state.text1)
 		this.setState({
-			text1:''
+			text1:'',
+			time:timestamp()
 		})
 	}
 
@@ -35,7 +37,7 @@ class Chat extends Component {
 					<div className="room" id="room 1">
 						{this.props.messages1.map((message, i) => (
 							<div key={"message1" + i}>
-								{message.username}: {message.message}
+								{message.username}: {this.state.time}: {message.message}
 							</div>
 						))}
 					</div>

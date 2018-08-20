@@ -2,7 +2,7 @@ function runsocket (io) {
   io.on('connection', socket => {
     console.log('connected')
 
-    socket.on('signin', function(username) {
+    socket.on('signin', function (username) {
     	socket.username = username
     })
 

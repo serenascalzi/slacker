@@ -22,6 +22,12 @@ export function signin (username) {
   socket.emit('signin', username)
 }
 
+export function timestamp () {
+  let date = new Date()
+  let time = date.toLocaleTimeString()
+  return time
+}
+
 /*let loginInterceptor = null
 
 if (window.localStorage.getItem('token')) {
