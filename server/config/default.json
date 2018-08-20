@@ -1,5 +1,14 @@
 {
   "server": {
     "port": 3001
+  },
+  "db": {
+  	"user"    :"slacker",
+  	"password":"zXA&@LA^#Yq7vQq+",
+  	"database":"slacker",
+  	"host"    :"localhost"
+  },
+  "jwt": {
+  	"secret":"e-$=-6UXK7k#sMaq"
   }
 }

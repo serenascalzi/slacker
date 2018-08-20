@@ -1,54 +1,32 @@
 import React, {Component} from 'react'
 import '../styles/App.css'
-import {sendForm1} from '../actions/chatActions'
-import {connect} from 'react-redux'
+import {Provider} from 'react-redux'
+import store from '../store'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Signin from './Signin'
+import Chat from './Chat'
+//import Login from './Login'
+//import AuthRoute from './AuthRoute'
 
 class App extends Component {
-
-	state = {
-		text1:''
-	}
-
-	handleChange = (e) => {
-		this.setState({
-			[e.target.name]:e.target.value
-		})
-	}
-
-	handleForm1 = (e) => {
-		e.preventDefault()
-		sendForm1(this.state.text1)
-		this.setState({
-			text1:''
-		})
-	}
-
-	render () {
-		return (
-			<div className="container">
-				<div>
-					<h1><i class="fa fa-pied-piper-alt"></i> slacker</h1>
-					<form onSubmit={this.handleForm1}>
-						<input name="text1" onChange={this.handleChange} type="text" placeholder="Start chatting..." value={this.state.text1} />
-						<button type="submit">Submit</button>
-					</form>
-					<div className="room" id="room 1">
-						{this.props.messages1.map((message, i) => (
-							<div key={"message1" + i}>
-								{message.message}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-		)
-	}
+  render () {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div>
+            <Route exact path="/" component={Signin} />
+            <Route path="/chat" component={Chat} />
+          </div>
+        </Router>
+      </Provider>
+    )
+  }
 }
 
-function mapStateToProps(appstate) {
-	return {
-		messages1:appstate.messages1
-	}
-}
+export default App
 
-export default connect(mapStateToProps)(App)
+/*<div>
+  <Route exact path="/" render={() => <Redirect to="/chat" />} />
+  <Route exact path="/login" component={Login} />
+  <AuthRoute path="/chat" component={Chat} />
+</div>*/
