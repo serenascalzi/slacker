@@ -1,5 +1,6 @@
 const initialState = {
-	messages1: [],
+	users: [],
+  messages1: [],
 	messages2: [],
 	messages3: [],
 	messages4: []
@@ -7,6 +8,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case 'USERS':
+      return {...state, users: action.payload}
     case 'MESSAGE_1':
       return {...state, messages1: [...state.messages1, action.payload]}
     case 'MESSAGE_2':

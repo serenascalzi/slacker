@@ -14,7 +14,7 @@ h1 {
 }
 
 h2 {
-	font-size:1.25em;
+	font-size:1.2em;
 }
 
 form {
@@ -40,6 +40,15 @@ a {
 
 a:hover {
 	color:#ccc;
+}
+
+.users {
+	display:flex;
+	justify-content:flex-start;
+}
+
+.users > div {
+	margin:0 10px 10px 0;
 }
 
 .room {

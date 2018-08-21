@@ -1,9 +1,14 @@
 function runsocket (io) {
+  const users = []
+
   io.on('connection', socket => {
     console.log('connected')
+    console.log(users)
 
     socket.on('signin', function (username) {
-    	socket.username = username
+        socket.username = username
+        users.push(username)
+        io.emit('signin', users)
     })
 
     socket.join('room 1')

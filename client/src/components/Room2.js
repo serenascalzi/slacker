@@ -30,6 +30,13 @@ class Room2 extends Component {
 				<div>
 					<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
 					<h2>Chat Room #2</h2>
+					<div className="users">
+						{this.props.users.map((user, i) => (
+							<div key={"user" + i}>
+								{user}
+							</div>
+						))}
+					</div>
 					<form onSubmit={this.handleForm2}>
 						<input name="text2" onChange={this.handleChange} type="text" placeholder="Start Chatting..." value={this.state.text2} autoComplete="off" />
 						<button type="submit">Submit</button>
@@ -37,7 +44,7 @@ class Room2 extends Component {
 					<div className="room" id="room 2">
 						{this.props.messages2.map((message, i) => (
 							<div key={"message2" + i}>
-								{message.username} :: {message.timestamp} :: {message.message}
+								{message.username} : {message.timestamp} : {message.message}
 							</div>
 						))}
 					</div>
@@ -55,6 +62,7 @@ class Room2 extends Component {
 
 function mapStateToProps(appstate) {
 	return {
+		users:appstate.users,
 		messages2:appstate.messages2
 	}
 }

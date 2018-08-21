@@ -7,10 +7,24 @@ export function signin (username) {
   socket.emit('signin', username)
 }
 
+socket.on('signin', function (data) {
+  store.dispatch({
+    type: 'USERS',
+    payload: data
+  })
+})
+
 export function timestamp () {
   let date = new Date()
   let time = date.toLocaleTimeString()
   return time
+}
+
+export function sendForm1 (message, timestamp) {
+  socket.emit('message room 1', {
+    message: message,
+    timestamp: timestamp
+  })
 }
 
 socket.on('message room 1', function (data) {
@@ -20,8 +34,8 @@ socket.on('message room 1', function (data) {
   })
 })
 
-export function sendForm1 (message, timestamp) {
-  socket.emit('message room 1', {
+export function sendForm2 (message, timestamp) {
+  socket.emit('message room 2', {
     message: message,
     timestamp: timestamp
   })
@@ -34,8 +48,8 @@ socket.on('message room 2', function (data) {
   })
 })
 
-export function sendForm2 (message, timestamp) {
-  socket.emit('message room 2', {
+export function sendForm3 (message, timestamp) {
+  socket.emit('message room 3', {
     message: message,
     timestamp: timestamp
   })
@@ -48,8 +62,8 @@ socket.on('message room 3', function (data) {
   })
 })
 
-export function sendForm3 (message, timestamp) {
-  socket.emit('message room 3', {
+export function sendForm4 (message, timestamp) {
+  socket.emit('message room 4', {
     message: message,
     timestamp: timestamp
   })
@@ -61,10 +75,3 @@ socket.on('message room 4', function (data) {
     payload: data
   })
 })
-
-export function sendForm4 (message, timestamp) {
-  socket.emit('message room 4', {
-    message: message,
-    timestamp: timestamp
-  })
-}
