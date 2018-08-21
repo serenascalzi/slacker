@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import '../styles/App.css'
-import {sendForm1, timestamp} from '../actions/chatActions'
+import {sendForm2, timestamp} from '../actions/chatActions'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-class Chat extends Component {
+class Room2 extends Component {
 
 	state = {
-		text1:''
+		text2:''
 	}
 
 	handleChange = (e) => {
@@ -16,11 +16,11 @@ class Chat extends Component {
 		})
 	}
 
-	handleForm1 = (e) => {
+	handleForm2 = (e) => {
 		e.preventDefault()
-		sendForm1(this.state.text1, timestamp())
+		sendForm2(this.state.text2, timestamp())
 		this.setState({
-			text1:''
+			text2:''
 		})
 	}
 
@@ -29,21 +29,21 @@ class Chat extends Component {
 			<div className="container">
 				<div>
 					<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
-					<h2>Main Chat Room</h2>
-					<form onSubmit={this.handleForm1}>
-						<input name="text1" onChange={this.handleChange} type="text" placeholder="Start Chatting..." value={this.state.text1} autoComplete="off" />
+					<h2>Chat Room #2</h2>
+					<form onSubmit={this.handleForm2}>
+						<input name="text2" onChange={this.handleChange} type="text" placeholder="Start Chatting..." value={this.state.text2} autoComplete="off" />
 						<button type="submit">Submit</button>
 					</form>
-					<div className="room" id="room 1">
-						{this.props.messages1.map((message, i) => (
-							<div key={"message1" + i}>
+					<div className="room" id="room 2">
+						{this.props.messages2.map((message, i) => (
+							<div key={"message2" + i}>
 								{message.username} :: {message.timestamp} :: {message.message}
 							</div>
 						))}
 					</div>
 					<div className="links">
-						<div>Main Chat Room</div>
-						<div><Link to={"/room2"}>Chat Room #2</Link></div>
+						<div><Link to={"/chat"}>Main Chat Room</Link></div>
+						<div>Chat Room #2</div>
 						<div><Link to={"/room3"}>Chat Room #3</Link></div>
 						<div><Link to={"/room4"}>Chat Room #4</Link></div>
 					</div>
@@ -55,8 +55,8 @@ class Chat extends Component {
 
 function mapStateToProps(appstate) {
 	return {
-		messages1:appstate.messages1
+		messages2:appstate.messages2
 	}
 }
 
-export default connect(mapStateToProps)(Chat)
+export default connect(mapStateToProps)(Room2)

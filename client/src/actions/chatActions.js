@@ -1,9 +1,17 @@
 import io from 'socket.io-client'
 import store from '../store'
-//import axios from 'axios'
-//import jwt from 'jsonwebtoken'
 
-const socket = io.connect('http://0.0.0.0:3001')
+const socket = io.connect('http://10.68.0.245:3001')
+
+export function signin (username) {
+  socket.emit('signin', username)
+}
+
+export function timestamp () {
+  let date = new Date()
+  let time = date.toLocaleTimeString()
+  return time
+}
 
 socket.on('message room 1', function (data) {
   store.dispatch({
@@ -19,58 +27,44 @@ export function sendForm1 (message, timestamp) {
   })
 }
 
-export function signin (username) {
-  socket.emit('signin', username)
-}
-
-export function timestamp () {
-  let date = new Date()
-  let time = date.toLocaleTimeString()
-  return time
-}
-
-/*let loginInterceptor = null
-
-if (window.localStorage.getItem('token')) {
-  const token = window.localStorage.getItem('token')
-
-  loginInterceptor = axios.interceptors.request.use(config => {
-    config.headers['Authorization'] = 'Bearer ' + token
-  })
-
-  const username = jwt.decode(token).username
-
+socket.on('message room 2', function (data) {
   store.dispatch({
-    type: 'LOGIN_SUCCESS',
-    payload: {
-      username: username
-    }
+    type: 'MESSAGE_2',
+    payload: data
+  })
+})
+
+export function sendForm2 (message, timestamp) {
+  socket.emit('message room 2', {
+    message: message,
+    timestamp: timestamp
   })
 }
 
-export function login (username, password) {
-  axios.post('/api/login', {username, password}).then(resp => {
-    const token = resp.data.token
-
-    loginInterceptor = axios.interceptors.request.use(config => {
-      config.headers['Authorization'] = 'Bearer ' + token
-    })
-    store.dispatch({
-      type: 'LOGIN_SUCCESS',
-      payload: {
-        username: username
-      }
-    })
-  }).catch(err => {
-    store.dispatch({
-      type: 'LOGIN_FAILURE'
-    })
-  })
-}
-
-export function logout () {
-  axios.interceptors.request.eject(loginInterceptor)
+socket.on('message room 3', function (data) {
   store.dispatch({
-    type: 'LOGOUT'
+    type: 'MESSAGE_3',
+    payload: data
   })
-}*/
+})
+
+export function sendForm3 (message, timestamp) {
+  socket.emit('message room 3', {
+    message: message,
+    timestamp: timestamp
+  })
+}
+
+socket.on('message room 4', function (data) {
+  store.dispatch({
+    type: 'MESSAGE_4',
+    payload: data
+  })
+})
+
+export function sendForm4 (message, timestamp) {
+  socket.emit('message room 4', {
+    message: message,
+    timestamp: timestamp
+  })
+}

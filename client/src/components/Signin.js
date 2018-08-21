@@ -28,7 +28,7 @@ class Signin extends Component {
 							<input type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="Enter Username" autoComplete="off" />
 						</div>
 						<div>
-							<button type="submit">Signin</button>
+							<button type="submit">Sign In</button>
 						</div>
 					</form>
 				</div>
