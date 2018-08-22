@@ -1,18 +1,21 @@
 import io from 'socket.io-client'
+import axios from 'axios'
 import store from '../store'
+import {api} from '../lib/Authentication'
 
 const socket = io.connect('http://10.68.0.245:3001')
 
-export function signin (username) {
-  socket.emit('signin', username)
+export function register (user) {
+  axios.post('/api/register/', user).then(resp => {
+    console.log(resp)
+  })
 }
 
-socket.on('signin', function (data) {
-  store.dispatch({
-    type: 'USERS',
-    payload: data
+export function login (user) {
+  axios.post('/api/login/', user).then(resp => {
+    console.log(resp)
   })
-})
+}
 
 export function timestamp () {
   let date = new Date()
@@ -23,7 +26,8 @@ export function timestamp () {
 export function sendForm1 (message, timestamp) {
   socket.emit('message room 1', {
     message: message,
-    timestamp: timestamp
+    timestamp: timestamp,
+    username: api.getProfile().username
   })
 }
 
@@ -37,7 +41,8 @@ socket.on('message room 1', function (data) {
 export function sendForm2 (message, timestamp) {
   socket.emit('message room 2', {
     message: message,
-    timestamp: timestamp
+    timestamp: timestamp,
+    username: api.getProfile().username
   })
 }
 
@@ -51,7 +56,8 @@ socket.on('message room 2', function (data) {
 export function sendForm3 (message, timestamp) {
   socket.emit('message room 3', {
     message: message,
-    timestamp: timestamp
+    timestamp: timestamp,
+    username: api.getProfile().username
   })
 }
 
@@ -65,7 +71,8 @@ socket.on('message room 3', function (data) {
 export function sendForm4 (message, timestamp) {
   socket.emit('message room 4', {
     message: message,
-    timestamp: timestamp
+    timestamp: timestamp,
+    username: api.getProfile().username
   })
 }
 

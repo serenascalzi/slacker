@@ -31,9 +31,9 @@ class Room3 extends Component {
 					<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
 					<h2>Chat Room #3</h2>
 					<div className="users">
-						{this.props.users.map((user, i) => (
+						{this.props.messages3.map((user, i) => (
 							<div key={"user" + i}>
-								{user}
+								{user.username}
 							</div>
 						))}
 					</div>
@@ -62,7 +62,6 @@ class Room3 extends Component {
 
 function mapStateToProps(appstate) {
 	return {
-		users:appstate.users,
 		messages3:appstate.messages3
 	}
 }

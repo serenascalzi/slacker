@@ -72,3 +72,8 @@ a:hover {
 	color:#ccc;
 	border:1px solid #ccc;
 }
+
+.logout {
+	display:flex;
+	justify-content:center;
+}

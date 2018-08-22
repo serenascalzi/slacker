@@ -6,6 +6,21 @@ import config from 'config'
 
 const router = express.Router()
 
+router.post('/register', (req, res, next) => {
+  const username = req.body.username
+  const password = sha512(req.body.password)
+
+  console.log(password)
+
+  const sql = 'INSERT INTO users (username, password) VALUES (?, ?)'
+
+  connection.query(sql, [username, password], (err, results, fields) => {
+    res.json({
+      message: 'User Created'
+    })
+  })
+})
+
 router.post('/login', (req, res, next) => {
   const username = req.body.username
   const password = sha512(req.body.password)
@@ -25,21 +40,6 @@ router.post('/login', (req, res, next) => {
         message: 'Username/Password Incorrect'
       })
     }
-  })
-})
-
-router.post('/register', (req, res, next) => {
-  const username = req.body.username
-  const password = sha512(req.body.password)
-
-  console.log(password)
-
-  const sql = 'INSERT INTO users (username, password) VALUES (?, ?)'
-
-  connection.query(sql, [username, password], (err, results, fields) => {
-    res.json({
-      message: 'User Created'
-    })
   })
 })
 
