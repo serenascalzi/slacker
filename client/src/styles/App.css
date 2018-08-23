@@ -1,3 +1,17 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+html {
+	box-sizing:border-box;
+	background:rgb(102,0,102);
+}
+
+*, *:before, *:after {
+	box-sizing:inherit;
+}
+
 .container {
 	display:flex;
 	width:100%;
@@ -6,7 +20,8 @@
 .container > div {
 	margin:0 20px;
 	width:100%;
-	font-family: 'Play',sans-serif;
+	font-family:'Play',sans-serif;
+	color:white;
 }
 
 h1 {
@@ -14,17 +29,28 @@ h1 {
 }
 
 h2 {
+	margin-bottom:10px;
 	font-size:1.2em;
+}
+
+h3 {
+	margin-top:10px;
+	font-size:1.1em;
 }
 
 form {
 	display:flex;
+	flex-direction:column;
 	width:100%;
+}
+
+form > div {
+	margin:5px 0;
 }
 
 input {
 	flex-grow:1;
-	padding:10px;
+	padding:5px 10px;
 	outline:0;
 }
 
@@ -35,11 +61,11 @@ button {
 
 a {
 	text-decoration:none;
-	color:#000;
+	color:white;
 }
 
 a:hover {
-	color:#ccc;
+	color:silver;
 }
 
 .users {
@@ -51,12 +77,20 @@ a:hover {
 	margin:0 10px 10px 0;
 }
 
+.chat {
+	display:flex;
+	flex-direction:row;
+	width:100%;
+}
+
 .room {
 	margin:10px 0;
 	padding:10px;
-	height:300px;
+	height:150px;
 	line-height:2em;
-	border:1px solid #ccc;
+	color:black;
+	background-color:white;
+	border:1px solid silver;
 	overflow-x:hidden;
     overflow-y:scroll;
 }
@@ -67,10 +101,10 @@ a:hover {
 }
 
 .links > div {
-	margin:10px;
+	margin:5px;
 	padding:10px;
-	color:#ccc;
-	border:1px solid #ccc;
+	text-align:center;
+	color:silver;
 }
 
 .logout {

@@ -42,7 +42,7 @@ class Chat extends Component {
 							</div>
 						))}
 					</div>
-					<form onSubmit={this.handleForm1}>
+					<form onSubmit={this.handleForm1} className="chat">
 						<input name="text1" onChange={this.handleChange} type="text" placeholder="Start Chatting..." value={this.state.text1} autoComplete="off" />
 						<button type="submit">Submit</button>
 					</form>

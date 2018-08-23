@@ -42,7 +42,7 @@ class Room4 extends Component {
 							</div>
 						))}
 					</div>
-					<form onSubmit={this.handleForm4}>
+					<form onSubmit={this.handleForm4} className="chat">
 						<input name="text4" onChange={this.handleChange} type="text" placeholder="Start Chatting..." value={this.state.text4} autoComplete="off" />
 						<button type="submit">Submit</button>
 					</form>

@@ -52,9 +52,7 @@ class Login extends Component {
                 <button type="submit">Log In</button>
               </div>
             </form>
-            <div className="links">
-              <div><Link to={"/register"}>Register</Link></div>
-            </div>
+            <h3>New to Slacker? <Link to={"/register"}>Register Now!</Link></h3>
           </div>
         </div>
       )
