@@ -17,6 +17,13 @@ export function login (user) {
   })
 }
 
+export function addUser (username) {
+  store.dispatch({
+    type: 'ADD_USER',
+    payload: username
+  })
+}
+
 export function timestamp () {
   let date = new Date()
   let time = date.toLocaleTimeString()

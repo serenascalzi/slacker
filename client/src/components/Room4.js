@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import '../styles/App.css'
 import {sendForm4, timestamp} from '../actions/chatActions'
 import {Link} from 'react-router-dom'
+import {withAuth} from '../lib/Authentication'
 import {connect} from 'react-redux'
 
 class Room4 extends Component {
@@ -24,6 +25,10 @@ class Room4 extends Component {
 		})
 	}
 
+	logout = () => {
+		this.props.signout()
+	}
+
 	render() {
 		return (
 			<div className="container">
@@ -31,9 +36,9 @@ class Room4 extends Component {
 					<h1><i className="fa fa-pied-piper-alt"></i> slacker</h1>
 					<h2>Chat Room #4</h2>
 					<div className="users">
-						{this.props.messages4.map((user, i) => (
+						{this.props.users.map((user, i) => (
 							<div key={"user" + i}>
-								{user.username}
+								{user}
 							</div>
 						))}
 					</div>
@@ -54,6 +59,9 @@ class Room4 extends Component {
 						<div><Link to={"/room3"}>Chat Room #3</Link></div>
 						<div>Chat Room #4</div>
 					</div>
+					<div className="logout">
+						<button onClick={this.logout}>Log Out</button>
+					</div>
 				</div>
 			</div>
 		)
@@ -62,8 +70,9 @@ class Room4 extends Component {
 
 function mapStateToProps(appstate) {
 	return {
+		users:appstate.users,
 		messages4:appstate.messages4
 	}
 }
 
-export default connect(mapStateToProps)(Room4)
+export default withAuth(connect(mapStateToProps)(Room4))

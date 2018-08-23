@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {addUser} from '../actions/chatActions'
 import {withAuth} from '../lib/Authentication'
 import {Redirect, Link} from 'react-router-dom'
 
@@ -21,7 +22,7 @@ class Login extends Component {
     this.props.signin(this.state.username, this.state.password, () => {
       this.setState({ redirectToReferrer: true })
     })
-    this.props.history.push('./chat')
+    addUser(this.state.username)
   }
 
   logout = () => {
@@ -29,11 +30,11 @@ class Login extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: {pathname: this.props.defaultRedirect }}
+    //const { from } = this.props.location.state || { from: {pathname: this.props.defaultRedirect }}
     const { redirectToReferrer } = this.state
 
     if (redirectToReferrer) {
-      return <Redirect to={from} />
+      return <Redirect to="/chat" />
     } else {
       return (
         <div className="container">
